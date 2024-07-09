@@ -1,18 +1,15 @@
-import math
-
 T = int(input())
 
 for i in range(T):
-    line = input().split()
-    length = len(line)
+    toks = input().split()
+    ans = float(toks[0])
     
-    line[0] = float(line[0])
-    
-    for j in range(1, length):
-        if line[j] == "@":
-            line[0] = line[0] * 3
-        elif line[j] == "%":
-            line[0] = line[0] + 5
-        elif line[j] == "#":
-            line[0] = line[0] - 7
-    print(f"{line[0]:.2f}")
+    for tok in toks[1:]:
+        if tok == "@":
+            ans *= 3
+        if tok == "%":
+            ans += 5
+        if tok == "#":
+            ans -= 7
+
+    print(f"{ans:.2f}")
