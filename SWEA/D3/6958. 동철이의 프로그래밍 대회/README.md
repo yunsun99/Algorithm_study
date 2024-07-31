@@ -10,6 +10,12 @@
 
 2024-07-31 10:01
 
+### 소요 시간
 
+20분
+
+### 문제 유형
+
+2차원 배열
 
 > 출처: SW Expert Academy, https://swexpertacademy.com/main/code/problem/problemList.do
