@@ -1,42 +1,43 @@
-import java.util.Scanner;
-import java.io.FileInputStream;
 import java.util.Arrays;
+import java.util.Scanner;
 
-class Solution
-{
-	public static void main(String args[]) throws Exception
-	{
+public class Solution {
+
+	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-
-		for(int test_case = 1; test_case <= 10; test_case++)
-		{
-            // 덤프 횟수 입력받기
-			int dump_num = sc.nextInt();
-            
-            // 높이 입력받기
-            int [] heights = new int[100];
-            for (int i = 0; i < 100; i++) {
-            	heights[i] = sc.nextInt();
-            }
-            
-            for (int j = 0; j < dump_num; j++) {
-                Arrays.sort(heights);
-                
-                if (heights[heights.length - 1] - heights[0] == 0) {
-                    break;
-                }    
-                
-                if (heights[heights.length - 1] - heights[0] == 1) {
-                    break;
-                } 
-                
-                heights[0] += 1;
-                heights[heights.length - 1] -= 1;
-            }
-            Arrays.sort(heights);
-
-            System.out.print("#" + test_case + " " + (heights[heights.length - 1] - heights[0]) + "\n") ;
-            
+		
+		for (int test_case = 1; test_case <= 10; test_case++) {
+			int answer = 0;
+			int dumpNum = sc.nextInt();
+			int[] dumps = new int[100];
+			
+			for (int i = 0; i < 100; i++) {
+				dumps[i] = sc.nextInt();
+			}
+			
+			for (int dump = 0; dump < dumpNum; dump++) {
+				
+				// 배열을 오름차순으로 정렬
+				Arrays.sort(dumps);
+				
+				// 평탄화가 완료되었다면 최고점과 최저점의 높이 차를 반환
+				int dumpDiff = dumps[99] - dumps[0];
+				if (dumpDiff == 0 || dumpDiff == 1) {
+					break;
+				}
+				
+				dumps[0] += 1;
+				dumps[99] -= 1;	
+			}
+			
+			// 마지막 덤프 이후 정렬 수헹
+			Arrays.sort(dumps);
+			
+			answer = dumps[99] - dumps[0];
+			
+			System.out.println("#" + test_case + " " + answer);
 		}
+		
+		sc.close();
 	}
 }
