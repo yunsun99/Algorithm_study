@@ -2,6 +2,17 @@
 
 [문제 링크](https://www.acmicpc.net/problem/20040) 
 
+### 유형
+
+Union-find, 분리 집합
+
+### 리뷰
+
+Union-find가 아직 안 익숙한지, 처음에는 Union-find 문제인지 전혀 모르고 DFS로 풀었다가 거하게 시간초과가 났다..ㅎㅎ   
+한번 Union-find 라는 걸 깨닫고 나서는 술술 풀렸다.   
+처음에 Union-find가 보이냐마냐가 가장 중요한 문제인 듯 하다.
+
+
 ### 성능 요약
 
 메모리: 311944 KB, 시간: 1440 ms
