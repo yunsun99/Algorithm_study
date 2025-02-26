@@ -29,11 +29,12 @@ public class Main {
             lectures[i] = sc.nextInt();
         }
         sc.close();
-        
+
         for (int i = 0; i < N-1; i++) {
             int prevLecture = lectures[i];
             int nextLecture = lectures[i+1];
 
+            // 중요!!!!!!!!! 이거 때문에 계속 틀림..ㅠㅠ
             // if (parent[prevLecture] != parent[nextLecture]) answer++;
             if (find(prevLecture) != find(nextLecture)) answer++;
         }
