@@ -1,51 +1,61 @@
 import java.util.*;
 
+class Node {
+    int r;
+    int c;
+    Node(int r, int c) {
+        this.r = r;
+        this.c = c;
+    }
+}
+
 class Solution {
-    int[] dx = {1, 0, -1, 0};
-    int[] dy = {0, 1, 0, -1};
+    static int[] dr = {1, 0, -1, 0};
+    static int[] dc = {0, 1, 0, -1};
+    static int n;
+    static int m;
     
     public int solution(int[][] maps) {
         int answer = 0;
+        n = maps.length;
+        m = maps[0].length;
         
-        int[][] visited = new int[maps.length][maps[0].length];
-        
-        bfs(maps, visited);
-        answer = visited[maps.length-1][maps[0].length-1];
-        
-        if(answer == 0){
-            answer = -1;
-        }
-        
+        answer = bfs(maps, 0, 0, 1);
         return answer;
     }
-    
-    public void bfs(int[][] maps, int[][] visited){
-        int x = 0;
-        int y = 0;
-        visited[x][y] = 1;
-        Queue<int[]> queue = new LinkedList<>();
-        queue.add(new int[]{x, y});
+
+    public int bfs(int[][] maps, int r, int c, int cnt) {
+        Queue<Node> queue = new ArrayDeque<>();
+        int[][] visited = new int[n][m];
+        queue.offer(new Node(r, c));
+        visited[r][c] = 1;
+        int newCnt = cnt;
         
-        while(!queue.isEmpty()){
-            int[] current = queue.remove();
-            int cX = current[0];
-            int cY = current[1];
+        while (!queue.isEmpty()) {
+            int length = queue.size();
             
-            for(int i = 0; i < 4; i++){
-                int nX = cX + dx[i];
-                int nY = cY + dy[i];
-                
-                if(nX < 0 || nX > maps.length-1 || nY < 0 || nY > maps[0].length-1)
-                    continue;
-                
-                if(visited[nX][nY] == 0 && maps[nX][nY] == 1){
-                    visited[nX][nY] = visited[cX][cY] + 1;
-                    queue.add(new int[]{nX, nY});
+            for(int j = 0; j < length; j++) {
+                Node node = queue.poll();
+                int cr = node.r;
+                int cc = node.c;
+            
+                if (cr == n-1 && cc == m-1) {
+                    return newCnt;
+                }
+
+                for (int i = 0; i < 4; i++) {
+                    int nr = cr + dr[i];
+                    int nc = cc + dc[i];
+
+                    if (nr >= 0 && nr < n && nc >= 0 && nc < m && visited[nr][nc] == 0 && maps[nr][nc] == 1) {
+                        queue.offer(new Node(nr, nc));
+                        visited[nr][nc] = 1;
+                    }
                 }
             }
-            
+            newCnt++;
         }
         
-        
+        return -1;
     }
 }
